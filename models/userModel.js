@@ -14,6 +14,11 @@ const users = [
   },
 ];
 
+const getUser = (userId) => {
+    return users.filter(val => val.id == userId);
+}
+
 module.exports = {
   users,
+  getUser,
 };
