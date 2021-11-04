@@ -1,18 +1,21 @@
 'use strict';
 
 
-const {users, getUser} = require('../models/userModel');
+const {getAllUsers, getUser} = require('../models/userModel');
 
-const user_get_list = (req, res) => {
-    users.forEach((user) => {
-        delete user.password;
-    });
+const user_get_list = async (req, res) => {
+    const users = await getAllUsers();
+    console.log('all users', users);
+    // users.For((user) => {
+    //     delete user.password;
+    // });
     res.json(users);
 };
 
-const user_get = (req, res) => {
-    const user = getUser(req.params.userId);
-    delete user.password;
+const user_get = async (req, res) => {
+    const user = await getUser(req.params.userId);
+    console.log('get user by id', user);
+    // delete user.password;
     res.json(user);
 };
 
