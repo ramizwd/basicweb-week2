@@ -4,7 +4,7 @@
 const express = require('express')
 const multer  = require('multer');
 const upload = multer({dest: './uploads/'});
-const {cat_list_get, cat_get, cat_post} = require('../controllers/catController');
+const {cat_list_get, cat_get, cat_post, cat_delete} = require('../controllers/catController');
 const router = express.Router();
 
 
@@ -18,8 +18,6 @@ router.put('/', (req, res) => {
     res.send("PUT req cats");
 });
 
-router.delete('/', (req, res) => {
-    res.send("DELETE req cats");
-});
+router.delete('/catId', cat_delete);
 
 module.exports = router;
