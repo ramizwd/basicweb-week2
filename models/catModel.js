@@ -41,3 +41,5 @@ module.exports = {
   getAllCats,
   insertCat,
 };
+
+console.log('test');
