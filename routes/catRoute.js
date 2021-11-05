@@ -18,6 +18,6 @@ router.put('/', (req, res) => {
     res.send("PUT req cats");
 });
 
-router.delete('/catId', cat_delete);
+router.delete('/:catId', cat_delete);
 
 module.exports = router;
