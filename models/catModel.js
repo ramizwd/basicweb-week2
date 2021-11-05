@@ -24,7 +24,20 @@ const getAllCats = async () => {
     }
 };
 
+const insertCat = async (cat) => {
+    try {
+        // TODO add filename
+        const [rows] = await promisePool.execute('INSERT INTO `wop_cat` (name, weight, owner, birthdate, filename) VALUES (?,?,?,?,?)', 
+        [cat.name, cat.weight, cat.owner, cat.birthdate, cat.filename]);
+        console.log('model insert cat', rows);
+        return rows.insertId;
+    } catch (e){
+        console.error('model insert cat', e.message);
+    }
+};
+
 module.exports = {
   getCat,
   getAllCats,
+  insertCat,
 };
