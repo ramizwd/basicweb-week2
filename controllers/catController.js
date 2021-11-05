@@ -1,7 +1,7 @@
 'use strict';
 // catController
 
-const {getAllCats, getCat, insertCat, deleteCat} = require('../models/catModel');
+const {getAllCats, getCat, insertCat, deleteCat, updateCat} = require('../models/catModel');
 
 const cat_list_get = async (req, res) => {
     const cats = await getAllCats();
@@ -20,13 +20,18 @@ const cat_post = async (req, res) => {
     console.log('filename', req.file);
     const cat = req.body;
     cat.filename = req.file.filename;
-    const id = await insertCat(cat);
-    res.send(`cat added with id: ${id}`);
+    cat.message = `cat added with id: ${await insertCat(cat)}`;
+    res.json(cat);
 };
 
 const cat_delete = async (req, res) => {
-    await deleteCat(req.params.catId);
-    res.send('Cat deleted');
+    const deleted = await deleteCat(req.params.catId);
+    res.json({message: `Cat deleted: ${deleted}`});
+};
+
+const cat_update = async (req, res) => {
+    const updated = await updateCat(req.body);
+    res.json({message: `Cat updated: ${updated}`});
 };
 
 module.exports = {
@@ -34,6 +39,7 @@ module.exports = {
     cat_get,
     cat_post,
     cat_delete,
+    cat_update,
 };
 
 
