@@ -17,7 +17,7 @@ const cat_get = async (req, res) => {
 
 const cat_post = async (req, res) => {
     console.log('add user data', req.body);
-    console.log('filename', req.file);z
+    console.log('filename', req.file);
     const cat = req.body;
     cat.filename = req.file.filename;
     const id = await insertCat(cat);
