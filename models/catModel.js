@@ -53,3 +53,5 @@ module.exports = {
   insertCat,
   deleteCat,
 };
+
+console.log('test')
