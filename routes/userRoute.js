@@ -9,12 +9,12 @@ const {user_get_list, user_get, user_post, user_delete, user_update} = require('
 
 userRouter.route('/')
     .get(user_get_list)
+    .put(user_update)
     .post(upload.single('user'), user_post);
     
-
+    
 userRouter.route('/:userId')
     .get(user_get)
-    .delete(user_delete)
-    .put(user_update);
+    .delete(user_delete);
 
 module.exports = userRouter;
