@@ -2,24 +2,53 @@
 // catController
 
 const {getAllCats, getCat, insertCat, deleteCat, updateCat} = require('../models/catModel');
+const { validationResult } = require('express-validator');
+const { httpError } = require('../utils/errors');
 
-const cat_list_get = async (req, res) => {
+const cat_list_get = async (req, res, next) => {
     const cats = await getAllCats();
     console.log('all cats', cats);
-    res.json(cats);
+
+    if(cats.length > 0){
+        res.json(cats);
+        return;
+    }
+    const err = httpError('cats not found', 404);
+    next(err);
 };
 
-const cat_get = async (req, res) => {
+const cat_get = async (req, res, next) => {
     const catById = await getCat(req.params.catId);
     console.log('get cat by id', catById);
-    res.json(catById);
+
+    if(catById){
+        res.json(catById);
+        return;
+    }
+    const err = httpError('cat not found', 404);
+    next(err);
 };
 
-const cat_post = async (req, res) => {
+const cat_post = async (req, res, next) => {
     console.log('add cat data', req.body);
     console.log('filename', req.file);
+
     const cat = req.body;
     cat.filename = req.file.filename;
+
+    if(!req.file){
+        const err = httpError('Invalid file', 400);
+        next(err);
+        return;
+    }
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        console.error('Set post validation', errors.array());
+        const err = httpError(`data not valid`, 400);
+        next(err);
+        return;
+    }
+
     cat.message = `cat added with id: ${await insertCat(cat)}`;
     res.json(cat);
 };
