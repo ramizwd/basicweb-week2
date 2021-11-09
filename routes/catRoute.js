@@ -10,12 +10,12 @@ const router = express.Router();
 
 router.route('/')
     .get(cat_list_get)
-    .post(upload.single('cat'), cat_post);
-    
+    .post(upload.single('cat'), cat_post)
+    .put(cat_update);
 
+    
 router.route('/:catId')
     .get(cat_get)
-    .delete(cat_delete)
-    .put(cat_update);
+    .delete(cat_delete);
 
 module.exports = router;
