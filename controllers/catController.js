@@ -18,7 +18,7 @@ const cat_list_get = async (req, res, next) => {
 };
 
 const cat_get = async (req, res, next) => {
-    const catById = await getCat(req.params.catId);
+    const catById = await getCat(req.params.catId, next);
     console.log('get cat by id', catById);
 
     if(catById){
