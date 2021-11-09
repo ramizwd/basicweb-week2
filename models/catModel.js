@@ -8,14 +8,14 @@ const getCat = async (catId, next) => {
     // TODO find single cat object from wop_cat table and return it.
     try {
         // TODO: do the LEFT (or INNER) JOIN to get owner's name as ownername (from wop_user table).
-        const [rows] = await promisePool.execute('SLECT cat_id, owner, wop_cat.name AS name, weight, birthdate,'+
+        const [rows] = await promisePool.execute('SELECT cat_id, owner, wop_cat.name AS name, weight, birthdate,'+
             'filename, wop_user.name AS ownername FROM wop_cat INNER JOIN wop_user ON owner = user_id WHERE cat_id = ?',
             [catId]);
         console.log('Get cat by ID', rows);
         return rows[0];
       } catch (e) {
         console.error('error', e.message);
-        const err = httpError('Sql error', 500); // fix
+        const err = httpError('Sql error', 500);
         next(err);
       }
 };
