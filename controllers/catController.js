@@ -49,7 +49,7 @@ const cat_post = async (req, res, next) => {
         return;
     }
 
-    cat.message = `cat added with id: ${await insertCat(cat)}`;
+    cat.message = `cat added with id: ${await insertCat(cat, next)}`;
     res.json(cat);
 };
 
@@ -58,8 +58,8 @@ const cat_delete = async (req, res) => {
     res.json({message: `Cat deleted: ${deleted}`});
 };
 
-const cat_update = async (req, res) => {
-    const updated = await updateCat(req.body);
+const cat_update = async (req, res, next) => {
+    const updated = await updateCat(req.body, next);
     res.json({message: `Cat updated: ${updated}`});
 };
 
