@@ -6,7 +6,7 @@ const { validationResult } = require('express-validator');
 const { httpError } = require('../utils/errors');
 
 const cat_list_get = async (req, res, next) => {
-    const cats = await getAllCats();
+    const cats = await getAllCats(next);
     console.log('all cats', cats);
 
     if(cats.length > 0){
