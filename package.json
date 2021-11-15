@@ -1,13 +1,17 @@
 {
-  "name": "week2",
+  "name": "week2-database",
   "version": "1.0.0",
-  "description": "",
+  "description": "added database to cat and user endpoints",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ramiz W.",
+  "license": "GNU-3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ramizwd/basicweb-week2.git"
+    },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
