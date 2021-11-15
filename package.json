@@ -1,19 +1,23 @@
 {
-  "name": "week2",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "nodemon app.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-validator": "^6.13.0",
-    "multer": "^1.4.3",
-    "mysql2": "^2.3.2"
+    "name": "data-validation",
+    "version": "1.0.0",
+    "description": "BasicWeb Week 3 assignment",
+    "main": "app.js",
+    "scripts": {
+      "start": "nodemon app.js"
+    },
+    "author": "Ramiz W.",
+    "license": "GNU-3",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ramizwd/basicweb-week2.git"
+      },
+    "dependencies": {
+      "cors": "^2.8.5",
+      "dotenv": "^10.0.0",
+      "express": "^4.17.1",
+      "express-validator": "^6.13.0",
+      "multer": "^1.4.3",
+      "mysql2": "^2.3.2"
+    }
   }
-}
