@@ -30,7 +30,7 @@ const cat_get = async (req, res, next) => {
 };
 
 const cat_post = async (req, res, next) => {
-    console.log('add cat data', req.body);
+    console.log('add cat data', req.body, req.user);
     console.log('filename', req.file);
 
     const cat = req.body;
@@ -48,7 +48,7 @@ const cat_post = async (req, res, next) => {
         next(err);
         return;
     }
-
+    cat.owner = req.user.user_id;
     cat.message = `cat added with id: ${await insertCat(cat, next)}`;
     res.json(cat);
 };

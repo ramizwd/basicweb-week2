@@ -5,17 +5,21 @@ const express = require('express');
 const cors = require('cors');
 const cats = require('./routes/catRoute');
 const users = require('./routes/userRoute');
+const authRoute = require('./routes/authRoute');
 const { httpError } = require('./utils/errors');
+const passport = require('./utils/pass');
 const app = express();
 const port = 3000;
 
 app.use(cors());
+app.use(passport.initialize());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/cat', cats);
-app.use('/user', users);
+app.use('/auth', authRoute);
+app.use('/cat', passport.authenticate('jwt', {session: false}), cats);
+app.use('/user', passport.authenticate('jwt', {session: false}), users);
 
 app.use((req, res, next) => {
     const err = httpError('Not found', 404);
