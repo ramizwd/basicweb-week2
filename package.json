@@ -1,7 +1,7 @@
 {
-    "name": "data-validation",
+    "name": "week4-passport",
     "version": "1.0.0",
-    "description": "BasicWeb Week 3 assignment",
+    "description": "Week 4 - Passport.js setup",
     "main": "app.js",
     "scripts": {
         "start": "nodemon app.js"
