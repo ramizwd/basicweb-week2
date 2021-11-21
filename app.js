@@ -18,18 +18,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', authRoute);
-app.use('/cat', passport.authenticate('jwt', {session: false}), cats);
-app.use('/user', passport.authenticate('jwt', {session: false}), users);
+app.use('/cat', passport.authenticate('jwt', { session: false }), cats);
+app.use('/user', passport.authenticate('jwt', { session: false }), users);
 
 app.use((req, res, next) => {
-    const err = httpError('Not found', 404);
-    next(err);
+	const err = httpError('Not found', 404);
+	next(err);
 });
 
 app.use((err, req, res, next) => {
-    const status = err.status || 500;
-    res.status(status).send({ message: err.message || 'internal error' });
+	const status = err.status || 500;
+	res.status(status).send({ message: err.message || 'internal error' });
 });
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

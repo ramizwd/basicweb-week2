@@ -182,6 +182,7 @@ uploads/*
 # except one (empty) file to have the folder in version control
 !uploads/.gitkeep
 
-
+# Ignore REST client file
+request.rest
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,node
