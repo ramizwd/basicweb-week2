@@ -62,20 +62,18 @@ const cat_post = async (req, res, next) => {
 const cat_delete = async (req, res, next) => {
 	const deleted = await deleteCat(
 		req.params.catId,
-		req.user.role,
 		req.user.user_id,
+		req.user.role,
 		next
 	);
 	res.json({ message: `Cat deleted: ${deleted}` });
 };
 
 const cat_update = async (req, res, next) => {
-	const updated = await updateCat(
-		req.body,
-		req.user.user_id,
-		req.user.role,
-		next
-	);
+	req.body.id = req.params.catId;
+	req.body.owner = req.body.owner || req.user.user_id;
+	req.body.role = req.user.role;
+	const updated = await updateCat(req.body, next);
 	res.json({ message: `Cat updated: ${updated}` });
 };
 

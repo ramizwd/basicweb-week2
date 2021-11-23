@@ -53,23 +53,17 @@ const insertCat = async (cat, next) => {
 	}
 };
 
-const deleteCat = async (catId, role, user_id, next) => {
+const deleteCat = async (catId, user_id, role, next) => {
+	let sql = 'DELETE FROM wop_cat WHERE cat_id = ? AND owner = ?';
+	let params = [catId, user_id];
+	if (role === 0) {
+		sql = 'DELETE FROM wop_cat WHERE cat_id = ?';
+		params = [catId];
+	}
 	try {
-		if (role == 0) {
-			const [rows] = await promisePool.execute(
-				'DELETE FROM wop_cat WHERE cat_id = ?',
-				[catId]
-			);
-			console.log('model delete cat', rows);
-			return rows.affectedRows === 1;
-		} else {
-			const [rows] = await promisePool.execute(
-				'DELETE FROM wop_cat WHERE cat_id = ? AND owner = ?',
-				[catId, user_id]
-			);
-			console.log('model delete cat', rows);
-			return rows.affectedRows === 1;
-		}
+		const [rows] = await promisePool.execute(sql, params);
+		console.log('Deleted cat', rows);
+		return rows.affectedRows === 1;
 	} catch (e) {
 		console.error('model delete cat', e.message);
 		const err = httpError('Sql error', 500);
@@ -77,30 +71,19 @@ const deleteCat = async (catId, role, user_id, next) => {
 	}
 };
 
-const updateCat = async (cat, user_id, role, next) => {
+const updateCat = async (cat, role, next) => {
+	let sql =
+		'UPDATE wop_cat SET name=?, weight=?, birthdate=?  WHERE cat_id=? AND owner=?';
+	let params = [cat.name, cat.weight, cat.birthdate, cat.id, cat.owner];
+	if (role === 0) {
+		sql =
+			'UPDATE wop_cat SET name=?, weight=?,owner=?, birthdate=? WHERE cat_id=? ';
+		params = [cat.name, cat.weight, cat.owner, cat.birthdate, cat.id];
+	}
 	try {
-		if (role == 0) {
-			const [rows] = await promisePool.execute(
-				'UPDATE wop_cat SET name=?, weight=?, owner=?, birthdate=? WHERE cat_id=?',
-				[cat.name, cat.weight, cat.owner, cat.birthdate, cat.id]
-			);
-			console.log('model update cat', rows);
-			return rows.affectedRows === 1;
-		} else {
-			const [rows] = await promisePool.execute(
-				'UPDATE wop_cat SET name=?, weight=?, owner=?, birthdate=? WHERE cat_id=? AND owner=?',
-				[
-					cat.name,
-					cat.weight,
-					cat.owner,
-					cat.birthdate,
-					cat.id,
-					user_id,
-				]
-			);
-			console.log('model update cat', rows);
-			return rows.affectedRows === 1;
-		}
+		const [rows] = await promisePool.execute(sql, params);
+		console.log('model update cat', rows);
+		return rows.affectedRows === 1;
 	} catch (e) {
 		console.error('model update cat', e.message);
 		const err = httpError('Sql error', 500);

@@ -25,7 +25,6 @@ const router = express.Router();
 router
 	.route('/')
 	.get(cat_list_get)
-	.put(cat_update)
 	.post(
 		upload.single('cat'),
 		body('name').notEmpty(),
@@ -34,6 +33,6 @@ router
 		cat_post
 	);
 
-router.route('/:catId').get(cat_get).delete(cat_delete);
+router.route('/:catId').get(cat_get).delete(cat_delete).put(cat_update);
 
 module.exports = router;
