@@ -1,1 +1,1 @@
-BasicWeb week 4 assignment - Passport.js and JWT.
+BasicWeb week 5 assignment - Creating thumbnails and metadata for images.

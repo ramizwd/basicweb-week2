@@ -177,10 +177,12 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# ignore content of uploads folder
+# Ignore content of uploads folder
 uploads/*
-# except one (empty) file to have the folder in version control
+thumbnails/*
+# Except one (empty) file to have the folder in version control
 !uploads/.gitkeep
+!thumbnails/.gitkeep
 
 # Ignore REST client file
 request.rest

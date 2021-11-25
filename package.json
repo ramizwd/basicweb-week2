@@ -1,27 +1,29 @@
 {
-	"name": "week4",
-	"version": "1.0.0",
-	"description": "Week 4 - Passport.js and JWT setup",
-	"main": "app.js",
-	"scripts": {
-		"start": "nodemon app.js"
-	},
-	"author": "Ramiz W.",
-	"license": "GNU-3",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ramizwd/basicweb-week2.git"
-	},
-	"dependencies": {
-		"cors": "^2.8.5",
-		"dotenv": "^10.0.0",
-		"express": "^4.17.1",
-		"express-validator": "^6.13.0",
-		"jsonwebtoken": "^8.5.1",
-		"multer": "^1.4.3",
-		"mysql2": "^2.3.2",
-		"passport": "^0.5.0",
-		"passport-jwt": "^4.0.0",
-		"passport-local": "^1.0.0"
-	}
+    "name": "week5",
+    "version": "1.0.0",
+    "description": "Thumbnails for cats and metadata from images",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js"
+    },
+    "author": "Ramiz W.",
+    "license": "GNU-3",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ramizwd/basicweb-week2.git"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "exif": "^0.6.0",
+        "express": "^4.17.1",
+        "express-validator": "^6.13.0",
+        "jsonwebtoken": "^8.5.1",
+        "multer": "^1.4.3",
+        "mysql2": "^2.3.2",
+        "passport": "^0.5.0",
+        "passport-jwt": "^4.0.0",
+        "passport-local": "^1.0.0",
+        "sharp": "^0.29.3"
+    }
 }
