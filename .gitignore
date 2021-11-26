@@ -187,4 +187,9 @@ thumbnails/*
 # Ignore REST client file
 request.rest
 
+# Ignore TLS certificate and private key
+certrequest.csr
+ssl-cert.pem
+ssl-key.pem
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,node
