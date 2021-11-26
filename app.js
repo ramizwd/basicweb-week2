@@ -3,32 +3,20 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const https = require('https');
-const http = require('http');
-const fs = require('fs');
 const cats = require('./routes/catRoute');
 const users = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const { httpError } = require('./utils/errors');
 const passport = require('./utils/pass');
 const port = 3000;
-
-const sslkey = fs.readFileSync('ssl-key.pem');
-const sslcert = fs.readFileSync('ssl-cert.pem');
-
-const options = {
-    key: sslkey,
-    cert: sslcert,
-};
-
 const app = express();
 
-https.createServer(options, app).listen(8000);
-
-http.createServer((req, res) => {
-    res.writeHead(301, { Location: 'https://localhost:8000' + req.url });
-    res.end();
-}).listen(3000);
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+if (process.env.NODE_ENV === 'production') {
+    require('./utils/production')(app, port);
+} else {
+    require('./utils/localhost')(app, 8000, port);
+}
 
 app.use(cors());
 app.use(passport.initialize());
