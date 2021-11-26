@@ -13,6 +13,7 @@
         "url": "https://github.com/ramizwd/basicweb-week2.git"
     },
     "dependencies": {
+        "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
         "dotenv": "^10.0.0",
         "exif": "^0.6.0",
