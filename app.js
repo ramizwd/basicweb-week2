@@ -3,6 +3,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const bcrypt = require('bcryptjs');
 const cats = require('./routes/catRoute');
 const users = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
@@ -19,10 +20,11 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(cors());
-app.use(passport.initialize());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
 
 app.use(express.static('uploads'));
 app.use('/thumbnails', express.static('thumbnails'));
@@ -31,9 +33,9 @@ app.use('/auth', authRoute);
 app.use('/cat', passport.authenticate('jwt', { session: false }), cats);
 app.use('/user', passport.authenticate('jwt', { session: false }), users);
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     if (req.secure) {
-        res.send('Hello Secure World!');
+        res.send(await bcrypt.hash('qwe123', 10));
     } else {
         res.send('not secured?');
     }

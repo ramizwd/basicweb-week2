@@ -1,7 +1,7 @@
 {
     "name": "week5",
     "version": "1.0.0",
-    "description": "Thumbnails for cats and metadata from images",
+    "description": "Thumbnails for cats, metadata from images, and user registration",
     "main": "app.js",
     "scripts": {
         "start": "nodemon app.js"
